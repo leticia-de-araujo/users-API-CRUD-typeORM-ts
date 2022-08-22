@@ -1,6 +1,6 @@
 import { AppDataSource } from "../data-source";
 import { User } from "../entities/user.entity";
-import { IUserRequest, IUserResponse } from "../interfaces/user";
+import { IUserRequest } from "../interfaces/user";
 
 const userUpdateService = async (id: string, userData: IUserRequest) => {
   const userRepository = AppDataSource.getRepository(User);
@@ -14,7 +14,7 @@ const userUpdateService = async (id: string, userData: IUserRequest) => {
   }
 
   await userRepository
-    .update(id, {...userData, updated_at: new Date()})
+    .update(id, { ...userData, updated_at: new Date() })
     .then(() => {
       return true;
     })
